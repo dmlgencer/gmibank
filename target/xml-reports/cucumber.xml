@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="33.033">
+    <testcase classname="Register_Story" name="EX_01" time="32.825">
+        <system-out><![CDATA[Given user goes to "https://www.gmibank.com/"...............................passed
+When click the sign in symbol and register button...........................passed
+Then verify the registration page...........................................passed
+Then type the ssn, firstname, lastname, address, phone number, username and email information.passed
+When type the new password..................................................passed
+When type the new password confirmation.....................................passed
+Then click the register button..............................................passed
+]]></system-out>
+    </testcase>
+</testsuite>
