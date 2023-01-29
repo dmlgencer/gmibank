@@ -14,7 +14,6 @@ public class RegistrationStepDefinition {
     RegisterPage registerPage = new RegisterPage();
 
 
-
     @Given("user goes to {string}")
     public void user_goes_to(String string) {
         Driver.getDriver().get(ConfigReader.getProperty("gmi_bank_url"));
