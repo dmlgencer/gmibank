@@ -8,3 +8,4 @@ Feature: Register_Story
     When type the new password
     When type the new password confirmation
     Then click the register button
+

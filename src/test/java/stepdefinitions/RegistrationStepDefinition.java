@@ -1,17 +1,31 @@
 package stepdefinitions;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.GmiBankHomePage;
 import pages.RegisterPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
-public class RegistrationStepDefinition {
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+
+public class RegistrationStepDefinition  {
+
+    protected ExtentReports extentReports;
+    protected ExtentHtmlReporter extentHtmlReporter;
+    protected ExtentTest extentTest;
     GmiBankHomePage gmiBankHomePage = new GmiBankHomePage();
     RegisterPage registerPage = new RegisterPage();
+    static WebDriver driver;
+
 
 
     @Given("user goes to {string}")
@@ -63,10 +77,42 @@ public class RegistrationStepDefinition {
     }
 
     @Then("click the register button")
-    public void click_the_register_button() {
+    public void click_the_register_button() throws IOException {
 
-        registerPage.registerButton.click();
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmssms").format(new Date());
+        String path = System.getProperty("user.dir")+"/test-output/reports/" + currentTime+ "html_report.html";
+
+
+        extentHtmlReporter = new ExtentHtmlReporter(path);
+
+
+        extentReports = new ExtentReports();
+
+
+        extentReports.setSystemInfo("Test Environment", "Regression");
+        extentReports.setSystemInfo("Application", "TechProEd");
+        extentReports.setSystemInfo("Browser", "Chrome");
+        extentReports.setSystemInfo("Team", "Eagles");
+        extentReports.setSystemInfo("SQA", "Damla Gencer");
+
+
+        extentHtmlReporter.config().setReportName("GMI Bank");
+        extentHtmlReporter.config().setDocumentTitle("GMI Bank extent reports");
+
+
+
+
+        extentReports.attachReporter(extentHtmlReporter);
+
+
+        extentTest = extentReports.createTest("My Extent Reporter", "Regression Test Report");
+
+
+        extentReports.flush();
+
+
 
     }
+
 
 }

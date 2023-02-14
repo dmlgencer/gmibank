@@ -1,6 +1,7 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,7 +11,11 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
@@ -266,6 +271,27 @@ public class Driver {
     }
     public static void waitAndClickLocationText(WebElement element, String value) {
         Driver.getDriver().findElement(By.xpath("//*[text()='" + value + "']")).click();
+    }
+
+    public static void takeScreenShot() throws IOException {
+        //1.Take screenshot
+        File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        // ALTERNATIVELY WE CAN DO SAME CODE IN 2 LINES
+        //  TakesScreenshot ts = (TakesScreenshot) driver;
+        //  File image = ts.getScreenshotAs(OutputType.FILE);
+
+
+        //2.Save Screenshot
+        String currentTime = new SimpleDateFormat("yyyyMMddhmmssms").format(new Date());
+
+        //path of screenshot save folder                 folder  / folder       //file name
+        String path = System.getProperty("user.dir") + "/test-output/screenshots/"+ currentTime +"image.png";
+        FileUtils.copyFile(image, new File(path));
+
+
+
+
     }
 
 

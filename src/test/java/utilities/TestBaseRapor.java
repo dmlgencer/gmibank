@@ -28,9 +28,9 @@ public class TestBaseRapor {
 
         extentReports.setSystemInfo("Enviroment","QA");
         extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser")); // chrome, firefox
-        extentReports.setSystemInfo("Automation Engineer", "Suleyman");
-        extentHtmlReporter.config().setDocumentTitle("amazon Arama Testi");
-        extentHtmlReporter.config().setReportName("Hepsiburada Automation Reports");
+        extentReports.setSystemInfo("Automation Engineer", "Damla Naz Gençer");
+        extentHtmlReporter.config().setDocumentTitle("GMI Bank all page testing");
+        extentHtmlReporter.config().setReportName("GMI Bank Automation Reports");
     }
 
     @AfterMethod(alwaysRun = true)
